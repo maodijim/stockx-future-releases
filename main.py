@@ -11,7 +11,7 @@ send_to_email = [""]
 
 
 #############################################
-prem_percent = 50
+prem_percent = 45
 stockx_url = "https://stockx.com/new-releases/sneakers"
 
 def load_releases(driver, url):
@@ -85,6 +85,7 @@ def main():
 if __name__ == '__main__':
     args = utilities.get_args()
     chrome_driver = webdriver.Chrome(executable_path=args.driver_path)
+    chrome_driver.set_window_size(1024, 768)
     chrome_driver.implicitly_wait(20)
     try:
         main()
