@@ -67,17 +67,18 @@ def find_profit_snk(driver, selected_sneakers, prem=50):
 def main():
     releases = load_releases(chrome_driver, stockx_url)
     final_releases_list = find_profit_snk(chrome_driver, select_releases(chrome_driver, releases), prem=prem_percent)
-    for email in send_to_email:
-        try:
-            utilities.send_email(smtp_server=email_server,
-                                 email_user=email_user,
-                                 email_password=email_pass,
-                                 send_from=email_user,
-                                 send_to=email,
-                                 msg=utilities.dict_to_string(final_releases_list))
-        except:
-            traceback.print_exc()
-            print("Failed to send email to %s" % email)
+    if len(final_releases_list) > 0:
+        for email in send_to_email:
+            try:
+                utilities.send_email(smtp_server=email_server,
+                                     email_user=email_user,
+                                     email_password=email_pass,
+                                     send_from=email_user,
+                                     send_to=email,
+                                     msg=utilities.dict_to_string(final_releases_list))
+            except:
+                traceback.print_exc()
+                print("Failed to send email to %s" % email)
     print(utilities.dict_to_string(final_releases_list))
 
 
