@@ -7,7 +7,7 @@ from selenium.common.exceptions import NoSuchElementException
 email_server = ""
 email_user = ""
 email_pass = ""
-send_to_email = [""]
+send_to_email = []
 
 
 #############################################
@@ -65,8 +65,8 @@ def find_profit_snk(driver, selected_sneakers, prem=50):
 
 
 def main():
-    releases = load_releases(chrome_driver, stockx_url)
-    final_releases_list = find_profit_snk(chrome_driver, select_releases(chrome_driver, releases), prem=prem_percent)
+    releases = load_releases(browser_driver, stockx_url)
+    final_releases_list = find_profit_snk(browser_driver, select_releases(browser_driver, releases), prem=prem_percent)
     if len(final_releases_list) > 0:
         for email in send_to_email:
             try:
@@ -84,12 +84,12 @@ def main():
 
 if __name__ == '__main__':
     args = utilities.get_args()
-    chrome_driver = webdriver.Chrome(executable_path=args.driver_path)
-    chrome_driver.set_window_size(1024, 768)
-    chrome_driver.implicitly_wait(20)
+    browser_driver = webdriver.Firefox(executable_path=args.driver_path)
+    browser_driver.set_window_size(1024, 768)
+    browser_driver.implicitly_wait(20)
     try:
         main()
     except:
         traceback.print_exc()
     finally:
-        chrome_driver.close()
+        browser_driver.close()

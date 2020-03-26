@@ -46,7 +46,7 @@ def get_args():
     args = parser.parse_args()
 
     if not args.driver_path:
-        args.driver_path = input("Please Enter Chrome Webdriver path: ")
+        args.driver_path = input("Please Enter Firefox Webdriver path: ")
 
     return args
 
