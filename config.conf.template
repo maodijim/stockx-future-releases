@@ -1,0 +1,10 @@
+[settings]
+email_server =
+email_user =
+# For Gmail users, if you have 2-steps verification turned on, you will have to generate app token and use it here: https://support.google.com/mail/answer/185833?hl=en
+email_pass =
+# comma separated emails, to send message to phone search for "send email to phone" on google
+send_to_email =
+
+prem_percent = 45
+headless = false

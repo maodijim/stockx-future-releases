@@ -9,7 +9,7 @@ def dict_to_string(dict_int):
         return_str += """{snk_name}
     Release Date: {release_date}
     Release Link: {link}
-    Release Price: {release_price} 
+    Release Price: {release_price}
     Premium: {premium}%
 """.format(snk_name=item[0],
            release_date=" ".join(item[1]['release_date']),
@@ -24,7 +24,11 @@ def send_email(smtp_server, email_user, email_password, send_from, send_to, msg,
     server.ehlo()
     server.starttls()
     server.login(email_user, email_password)
-    server.sendmail(send_from, send_to, email_msg_generator(send_from, send_to, msg))
+    server.sendmail(
+        send_from,
+        list(filter(None, send_to.split(","))),
+        email_msg_generator(send_from, send_to, msg)
+    )
 
 
 def email_msg_generator(send_from, send_to, msg):
